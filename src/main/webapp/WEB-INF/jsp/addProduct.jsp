@@ -16,80 +16,43 @@
             <jsp:include page="header.jsp"></jsp:include>
                 <main>
                 <c:choose>
-                    <c:when test="${item.ID == 0}">
+                    <c:when test="${item.name == null}">
                         <h2>Voeg product toe</h2>
-                        <form>
-                            <p><label>Naam</label></p>
-                            <p><input type="text"></p>
+                        <c:url var="addProduct" value="/controller/addProduct"></c:url>
 
-                            <p><label>Beschrijving</label></p>
-                            <p><input type="text"></p>
+                        <form:form modelAttribute="item" action="${addProduct}" method="POST">
 
-                            <p><label>Prijs</label></p>
-                            <p><input type="text"></p>
-                            
-                            <p><label>Stock</label></p>
-                            <p><input type="text"></p>
+                            <p><form:label path="name">Naam</form:label></p>
+                            <p><form:input type="text" path="name" required="required"/></p>
+                            <p><form:errors class="error" path="name"/></p>
+
+                            <p><form:label path="price">Prijs</form:label></p>
+                            <p><form:input type="text" path="price"/></p>
+                            <p><form:errors class="error" path="price" /></p>
 
                             <input type="submit" value="Voeg product toe">
 
-                        </form>
-                        <%--<form:form action="/navigationController/newItem" method="POST">
-                            
-                            <form:label path="name">Naam</form:label>
-                            <form:input type="text" path="name"/>
-                            <form:errors class="error" path="name"/>
-                            
-                            <form:label path="description">Beschrijving</form:label>
-                            <form:input type="text" path="description"/>
-                            <form:errors class="error" path="description"/>
-
-                    <form:label path="price">Prijs</form:label>
-                    <form:input type="text" path="price"/>
-                    <form:errors class="error" path="price" />
-                    
-                    <input type="submit" value="Voeg product toe">
-                    
-                </form:form> --%>
+                        </form:form>
                     </c:when>
 
                     <c:otherwise>
                         <h2>Product aanpassen</h2>
-
-                        <form>
-                            <p><label>Naam</label></p>
-                            <p><input type="text"></p>
-
-                            <p><label>Beschrijving</label></p>
-                            <p><input type="text"></p>
-
-                            <p><label>Prijs</label></p>
-                            <p><input type="text"></p>
+                        <c:url var="editProduct" value="/controller/editProduct"></c:url>
+                        <form:form modelAttribute="item" action="${editProduct}" method="POST">
                             
-                            <p><label>Stock</label></p>
-                            <p><input type="text"></p>
+                            <form:hidden path="id"></form:hidden>
 
-                            <input type="submit" value="Voeg product toe">
+                            <p><form:label path="name">Naam</form:label></p>
+                            <p><form:input type="text" path="name" required=""/></p>
+                            <p><form:errors class="error" path="name"/></p>
 
-                        </form>
+                            <p><form:label path="price">Prijs</form:label></p>
+                            <p><form:input type="text" path="price" required=""/></p>
+                            <p><form:errors class="error" path="price" /></p>
 
-                        <%-- <form:form modelAttribute="item" action="${addItem}" method="POST">
-                            
-                            <form:label path="name">Naam</form:label>
-                            <form:input type="text" path="name"/>
-                            <form:errors class="error" path="name"/>
-                            
-                            <form:label path="description">Beschrijving</form:label>
-                            <form:input type="text" path="description"/>
-                            <form:errors class="error" path="description"/>
+                            <input type="submit" value="Pas product aan">
 
-                    <form:label path="price">Prijs</form:label>
-                    <form:input type="text" path="price"/>
-                    <form:errors class="error" path="price" />
-                    
-                    <input type="submit" value="Pas product aan">
-                    
-                </form:form> --%>
+                        </form:form>
                     </c:otherwise>
                 </c:choose>
             </main>

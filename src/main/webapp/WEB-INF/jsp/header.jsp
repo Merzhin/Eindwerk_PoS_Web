@@ -16,12 +16,14 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="index.htm"><img src="images/logo.png" class="logo" alt="HDR logo"></a></li>
-                    <li><a href="<c:url value="/navigationController.htm"/>">Product overzicht</a></li>
-                    <li><a href="<c:url value="/navigationController/new.htm"/>">Voeg Product toe</a></li>
-                    <li><a href="<c:url value="/navigationController/management.htm"/>">Beheer</a></li>
+                    <li><a href="<c:url value="/controller.htm"/>"><img src="<c:url value="/images/logo.png"/>" class="logo" alt="HDR logo"></a></li>
+                    <li><a href="<c:url value="/controller.htm"/>">Product overzicht</a></li>
+                    <li><a href="<c:url value="/controller/newProduct.htm"/>">Voeg Product toe</a></li>
+                    <li><a href="<c:url value="/controller/userOverview.htm"/>">Gebruikers</a></li>
+                    <li><a href="<c:url value="/controller/newUser.htm"/>">Voeg gebruiker toe</a></li>
+                    <!--<li><a href="<c:url value="/controller/getUser.htm"/>">Profiel aanpassen</a></li>-->
                     <li>
-                        <form action="<c:url value="/perform_logout"/>" method="POST">
+                        <form action="<c:url value="/controller/logout.htm"/>" method="GET">
                             <input type="submit" value="Log uit">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         </form>

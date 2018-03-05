@@ -32,21 +32,6 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <version>${security.version}</version>
-        </dependency>
-        <dependency>
             <groupId>be.living-smart.eindwerk</groupId>
             <artifactId>PoS_Domain</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -54,7 +39,7 @@
     </dependencies>
 
     <build>
-        <finalName>PoS_Eindwerk</finalName>
+        <finalName>HDR-Beheer</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

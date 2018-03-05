@@ -9,11 +9,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  *
  * @author Thomas
  */
+
 @Configuration
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
     
-    @Bean
-    public RestTemplate restTemplate(){
+    @Bean 
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 }
