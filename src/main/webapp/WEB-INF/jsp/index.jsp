@@ -17,16 +17,20 @@
                     <h1>Index</h1>
                 <c:choose>
                     <c:when test="${sessionScope.loggedIn == null}">
+
                         <form action="<c:url value="/controller/login"/>" method="POST">
 
                             <p><label for="username">Gebruikersnaam</label></p>
-                            <p><input type="text" name="username" id="username"></p>
+                            <p><input type="text" name="username" id="username" value="${requestScope.username}"></p>
 
                             <p><label for="password">Wachtwoord</label></p>
                             <p><input type="password" name="password" id="password"></p>
 
                             <input type="submit" value="log in">
                         </form>
+                        <c:forEach items="${errors}" var="error">
+                            <p id="loginError" class="error"><c:out value="${error}"/></p>
+                        </c:forEach>
                     </c:when>
                     <c:otherwise>
                         <p>Hi ${sessionScope.loggedIn}, klik op onderstaande knop om terug uit te loggen!</p>

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -118,16 +119,25 @@ public class NavigationController {
         }
         return new ModelAndView("index");
     }
-    
+
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addUser(HttpServletRequest request){
-        if(isLoggedIn(request)){
+    public String addUser(HttpServletRequest request, RedirectAttributes ra) {
+        if (isLoggedIn(request)) {
             String user = "{\"username\":\"" + request.getParameter("username") + "\", \"password\":\"" + request.getParameter("password") + "\"}";
-            
+
+            boolean existing = restTemplate.getForObject(restUrl + "user/exists/" + request.getParameter("username"), Boolean.class);
+            if (existing) {
+                List<String> errors = new ArrayList<>();
+                errors.add("Deze gebruiker bestaat al");
+                ra.addFlashAttribute("errors", errors);
+                ra.addFlashAttribute("username", request.getParameter("username"));
+                return "redirect:/controller/newUser";
+            }
+
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<String> entity = new HttpEntity<String>(user, headers);
-            
+
             restTemplate.exchange(restUrl + "user", HttpMethod.POST, entity, String.class);
             return "redirect:/controller/userOverview";
         }
@@ -146,22 +156,22 @@ public class NavigationController {
     public String savePassword(HttpServletRequest request) {
         if (isLoggedIn(request)) {
             String user = "{\"username\":\"" + request.getSession().getAttribute("loggedIn") + "\", \"password\":\"" + request.getParameter("password") + "\"}";
-            
+
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<String> entity = new HttpEntity<String>(user, headers);
-            
+
             restTemplate.exchange(restUrl + "user", HttpMethod.PUT, entity, String.class);
             return "redirect:/controller/userOverview";
         }
         return "redirect:index.htm";
     }
-    
+
     @RequestMapping(value = "/removeUser/{user}", method = RequestMethod.GET)
-    public String removeUser(@PathVariable String user, HttpServletRequest request){
-        if(isLoggedIn(request)){
+    public String removeUser(@PathVariable String user, HttpServletRequest request) {
+        if (isLoggedIn(request)) {
             restTemplate.delete(restUrl + "user/" + user);
-            if(user.equals(request.getSession().getAttribute("loggedIn"))){
+            if (user.equals(request.getSession().getAttribute("loggedIn"))) {
                 return "redirect:/controller/logout";
             }
             return "redirect:/controller/userOverview";
@@ -182,8 +192,17 @@ public class NavigationController {
     }*/
 
  /* ------------------------------------------------------- Security ------------------------------------------------------- */
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public ModelAndView index() {
+        ResponseEntity<List<String>> response;
+        response = restTemplate.exchange(restUrl + "user", HttpMethod.GET, null, new ParameterizedTypeReference<List<String>>() {
+        });
+        List<String> users = response.getBody();
+        return new ModelAndView("index", "users", users);
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request) {
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, RedirectAttributes ra) {
         boolean response = restTemplate.getForObject(restUrl + "user/validateUser?username=" + username + "&password=" + password, Boolean.class);
         if (response) {
             request.getSession().setAttribute("loggedIn", username);
@@ -191,7 +210,8 @@ public class NavigationController {
         } else {
             List<String> errors = new ArrayList<>();
             errors.add("Gebruikersnaam of wachtwoord is niet correct");
-            request.setAttribute("errors", errors);
+            ra.addFlashAttribute("errors", errors);
+            ra.addFlashAttribute("username", username);
             return "redirect:/index.htm";
         }
     }

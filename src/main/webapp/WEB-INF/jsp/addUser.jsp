@@ -20,18 +20,23 @@
                 <form action="${addUser}" method="POST">
 
                     <p><label for="username">Naam</label></p>
-                    <p><input type="text" id="username" name="username" required=""/></p>
+                    <p><input type="text" id="username" name="username" value="${requestScope.username}" required/></p>
 
                     <p><label for="password">Nieuw wachtwoord</label></p>
                     <p><input type="password" id="password" name="password" oninput="checkPassword(this)" required></p>
-                    
+
                     <p><label for="confirm">Bevesting uw nieuw wachtwoord</label></p>
                     <p><input type="password" id="confirm"  oninput="checkConfirm(this)" required></p>
-                    
+
+                    <c:forEach items="${errors}" var="error">
+                        <p id="loginError" class="error"><c:out value="${error}"/></p>
+                    </c:forEach>
+
                     <p id="matchError" class="matchError">De wachtwoorden komen niet overeen.</p>
                     <p id="numberError" class="numberError">Een wachtwoord mag enkel cijfers bevatten</p>
 
                     <input type="submit" id="submit" disabled value="Toevoegen">
+
                 </form>
             </main>
             <jsp:include page="footer.jsp"></jsp:include>

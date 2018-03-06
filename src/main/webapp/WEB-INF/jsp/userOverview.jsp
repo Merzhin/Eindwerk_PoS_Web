@@ -28,7 +28,7 @@
                     </c:forEach>
                 </table>
                     <h2>Uw profiel</h2>
-                    <p>Naam:<c:out value="${sessionScope.loggedIn}"/></p>
+                    <p>Naam: <c:out value="${sessionScope.loggedIn}"/></p>
                     <form action="<c:url value="/controller/changePassword.htm"/>" method="GET">
                         <input type="submit" value="Verander wachtwoord">
                     </form>
