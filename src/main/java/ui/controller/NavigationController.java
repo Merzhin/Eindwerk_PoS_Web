@@ -65,7 +65,13 @@ public class NavigationController {
             if (result.hasErrors()) {
                 return "addProduct";
             }
-            restTemplate.postForObject(restUrl + "item", item, Item.class);
+            String restItem = "{\"name\":\"" + item.getName() + "\", \"price\":\"" + item.getPrice() + "\", \"isFavorite\":\"" + item.isIsFavorite() + "\"}";
+            
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<String> entity = new HttpEntity<String>(restItem, headers);
+            
+            restTemplate.exchange(restUrl + "item", HttpMethod.POST, entity, Item.class);
             return "redirect:/controller";
         }
         return "redirect:/index.htm";
@@ -170,26 +176,16 @@ public class NavigationController {
     @RequestMapping(value = "/removeUser/{user}", method = RequestMethod.GET)
     public String removeUser(@PathVariable String user, HttpServletRequest request) {
         if (isLoggedIn(request)) {
-            restTemplate.delete(restUrl + "user/" + user);
-            if (user.equals(request.getSession().getAttribute("loggedIn"))) {
-                return "redirect:/controller/logout";
+            if (restTemplate.getForObject(restUrl + "/user/exists/" + user, Boolean.class)) {
+                restTemplate.delete(restUrl + "user/" + user);
+                if (user.equals(request.getSession().getAttribute("loggedIn"))) {
+                    return "redirect:/controller/logout";
+                }
             }
             return "redirect:/controller/userOverview";
         }
         return "redirect:index.htm";
     }
-
-    /*@RequestMapping(value = "/getUser", method = RequestMethod.GET)
-    public ModelAndView getUser(HttpServletRequest request) {
-        if (isLoggedIn(request)) {
-            ModelAndView mv = new ModelAndView("userProfile");
-            String username = (String) request.getSession().getAttribute("loggedIn");
-            UserBean userinfo = restTemplate.getForObject(restUrl + "user/getUser/" + username, UserBean.class);
-            mv.addObject("userinfo", userinfo);
-            return mv;
-        }
-        return new ModelAndView("index");
-    }*/
 
  /* ------------------------------------------------------- Security ------------------------------------------------------- */
     @RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -202,7 +198,10 @@ public class NavigationController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, RedirectAttributes ra) {
+    public String login(@RequestParam("username") String username,
+            @RequestParam("password") String password, HttpServletRequest request,
+            RedirectAttributes ra
+    ) {
         boolean response = restTemplate.getForObject(restUrl + "user/validateUser?username=" + username + "&password=" + password, Boolean.class);
         if (response) {
             request.getSession().setAttribute("loggedIn", username);
@@ -217,7 +216,8 @@ public class NavigationController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request
+    ) {
         request.getSession().removeAttribute("loggedIn");
         return "redirect:/index.htm";
     }

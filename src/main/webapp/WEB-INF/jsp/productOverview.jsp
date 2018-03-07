@@ -20,6 +20,7 @@
                         <tr>
                             <th>Naam</th>
                             <th>Prijs(€)</th>
+                            <th>Favoriet</th>
                             <th>Bewerken</th>
                             <th>Verwijderen</th>
                         </tr>
@@ -27,8 +28,16 @@
                         <tr>
                             <td><c:out value="${item.name}"/></td>
                             <td><fmt:formatNumber value="${item.price}" minFractionDigits="2"/></td>
-                            <td class="icons"><a href="<c:url value="controller/editProduct/${item.id}"/>"><i class="fa fa-edit"></i></a></td>
-                            <td class="icons"><a href="<c:url value="controller/removeProduct/${item.id}"/>"><i class="fa fa-remove"></i></a></td>
+                            <c:choose>
+                            <c:when test="${item.isFavorite == true}">
+                                <td><i class="fas fa-check"></i></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td><i class="fas fa-times"></i></td>
+                            </c:otherwise>
+                            </c:choose>
+                            <td class="icons"><a href="<c:url value="controller/editProduct/${item.id}"/>"><i class="fas fa-pencil-alt"></i></a></td>
+                            <td class="icons"><a href="<c:url value="controller/removeProduct/${item.id}"/>"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                     </c:forEach>
                 </table>

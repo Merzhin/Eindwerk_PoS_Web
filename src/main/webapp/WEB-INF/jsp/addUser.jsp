@@ -16,6 +16,8 @@
             <jsp:include page="header.jsp"></jsp:include>
                 <main>
                     <h2>Voeg gebruiker toe</h2>
+                    <p>Een wachtwoord mag enkel bestaan uit cijfers!</p>
+
                 <c:url var="addUser" value="/controller/addUser"></c:url>
                 <form action="${addUser}" method="POST">
 

@@ -16,7 +16,7 @@
             <jsp:include page="header.jsp"></jsp:include>
                 <main>
                 <c:choose>
-                    <c:when test="${item.name == null}">
+                    <c:when test="${item.id == null}">
                         <h2>Voeg product toe</h2>
                         <c:url var="addProduct" value="/controller/addProduct"></c:url>
 
@@ -30,7 +30,10 @@
                             <p><form:input type="text" path="price"/></p>
                             <p><form:errors class="error" path="price" /></p>
 
-                            <input type="submit" value="Voeg product toe">
+                            <p><form:label path="isFavorite">Favoriet?</form:label><form:checkbox path="isFavorite"/></p>
+                            <p><form:errors class="error" path="isFavorite"/></p>
+
+                                <input type="submit" value="Voeg product toe">
 
                         </form:form>
                     </c:when>
@@ -39,16 +42,19 @@
                         <h2>Product aanpassen</h2>
                         <c:url var="editProduct" value="/controller/editProduct"></c:url>
                         <form:form modelAttribute="item" action="${editProduct}" method="POST">
-                            
+
                             <form:hidden path="id"></form:hidden>
 
-                            <p><form:label path="name">Naam</form:label></p>
+                                <p><form:label path="name">Naam</form:label></p>
                             <p><form:input type="text" path="name" required=""/></p>
                             <p><form:errors class="error" path="name"/></p>
 
                             <p><form:label path="price">Prijs</form:label></p>
                             <p><form:input type="text" path="price" required=""/></p>
                             <p><form:errors class="error" path="price" /></p>
+                            
+                            <p><form:label path="isFavorite">Favoriet?</form:label><form:checkbox path="isFavorite"/></p>
+                            <p><form:errors class="error" path="isFavorite"/></p>
 
                             <input type="submit" value="Pas product aan">
 

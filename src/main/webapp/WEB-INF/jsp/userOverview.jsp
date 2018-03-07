@@ -23,15 +23,15 @@
                     <c:forEach items="${users}" var="user"> 
                         <tr>
                             <td><c:out value="${user}"/></td>
-                            <td class="icons"><a href="<c:url value="/controller/removeUser/${user}"/>"><i class="fa fa-remove"></i></a></td>
+                            <td class="icons"><a href="<c:url value="/controller/removeUser/${user}"/>"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                     </c:forEach>
                 </table>
-                    <h2>Uw profiel</h2>
-                    <p>Naam: <c:out value="${sessionScope.loggedIn}"/></p>
-                    <form action="<c:url value="/controller/changePassword.htm"/>" method="GET">
-                        <input type="submit" value="Verander wachtwoord">
-                    </form>
+                <h2>Uw profiel</h2>
+                <p>Naam: <c:out value="${sessionScope.loggedIn}"/></p>
+                <form action="<c:url value="/controller/changePassword.htm"/>" method="GET">
+                    <input type="submit" value="Verander wachtwoord">
+                </form>
             </main>
             <jsp:include page="footer.jsp"></jsp:include>
         </div>
