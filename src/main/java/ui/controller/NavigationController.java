@@ -32,7 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class NavigationController {
 
     private RestTemplate restTemplate;
-    private String restUrl = "http://localhost:34081/Eindwerk_PoS_Rest/";
+    private String restUrl = "http://localhost:34081/HDR-Rest/";
 
     public NavigationController() {
         this.restTemplate = new RestTemplate();
