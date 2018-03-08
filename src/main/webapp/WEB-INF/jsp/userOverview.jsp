@@ -13,25 +13,29 @@
         <div class="container">
             <jsp:include page="head.jsp"></jsp:include>
             <jsp:include page="header.jsp"></jsp:include>
-                <main>
-                    <h2>Gebruikers</h2>
-                    <table>
-                        <tr>
-                            <th>Naam</th>
-                            <th>Verwijderen</th>
-                        </tr>
-                    <c:forEach items="${users}" var="user"> 
-                        <tr>
-                            <td><c:out value="${user}"/></td>
-                            <td class="icons"><a href="<c:url value="/controller/removeUser/${user}"/>"><i class="fas fa-trash-alt"></i></a></td>
-                        </tr>
-                    </c:forEach>
-                </table>
-                <h2>Uw profiel</h2>
-                <p>Naam: <c:out value="${sessionScope.loggedIn}"/></p>
-                <form action="<c:url value="/controller/changePassword.htm"/>" method="GET">
-                    <input type="submit" value="Verander wachtwoord">
-                </form>
+                <main class="flexbox">
+                    <div class="users">
+                        <h2>Gebruikers</h2>
+                        <table>
+                            <tr>
+                                <th>Naam</th>
+                                <th>Verwijderen</th>
+                            </tr>
+                        <c:forEach items="${users}" var="user"> 
+                            <tr>
+                                <td><c:out value="${user}"/></td>
+                                <td class="icons"><a href="<c:url value="/controller/removeUser/${user}"/>"><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+                    <div class="profile">
+                    <h2>Uw profiel</h2>
+                    <p>Naam: <c:out value="${sessionScope.loggedIn}"/></p>
+                    <form action="<c:url value="/controller/changePassword.htm"/>" method="GET">
+                        <input type="submit" value="Verander wachtwoord">
+                    </form>
+                </div>
             </main>
             <jsp:include page="footer.jsp"></jsp:include>
         </div>

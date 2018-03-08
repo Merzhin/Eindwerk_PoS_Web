@@ -1,30 +1,31 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : 19-Feb-2018, 10:01:20
     Author     : Thomas
 */
 
+html{
+    background-color: #C0B283;
+}
+
 .container {
     display: flex;
     max-width: 1000px;
     margin: auto;
-    background: grey;
+    background: #F4F4F4;
+    font-family: Replica, sans-serif;
 }
 
 body {
-    margin-top: 0px;
+    margin: 0px;
 }
 
 /* --------------------------------------- Header ------------------------------------------------- */
 
 header {
-    height: 100vh;
+    min-height: 100vh;
     max-width: 15%;
     border-right: 1px solid black;
+    background-color: #373737;
 }
 
 nav ul {
@@ -41,34 +42,96 @@ nav li {
     font-weight: bolder;
 }
 
-nav li:hover {
-    background: darkgrey;
+.hover:hover {
+    background: #c52127;
 }
 
 nav li a {
-    color: black;
+    color: white;
     text-decoration: none;
-    text-transform: uppercase;
 }
 
 .logo {
     max-width: 118px;
 }
 
+.logout {
+    width: 50px;
+    height: 50px;
+    font-size: larger;
+    background: #C0B283;
+}
+
 /* --------------------------------------------------- main -------------------------------------------------- */
 
 main {
-    margin-left: 5px;
+    margin: 0px auto;
+    min-width: 40%;
+    max-width: 60%;
 }
 
 .matchError, .numberError {
     display: none;
 }
 
+.errors {
+    max-width: 100%;
+    margin: 2px 0px;
+}
+
+.error {
+    border: 3px solid darkred;
+    border-radius: 8px;
+    background-color: red;
+    padding: 2px;
+    color: white;
+}
+
+.flexbox {
+    display: flex;
+}
+
+.users {
+    width: 60%;
+    padding-right: 10px;
+}
+
+.profile {
+    width: 40%;
+}
+
 /* -------------------------------------------------- Form --------------------------------------------------- */
 
 form p {
     margin: 4px 0px;
+}
+
+input {
+    margin-bottom: 5px;
+    width: 80%
+}
+
+input[type="checkbox"]{
+    width: auto;
+    margin-left: 6px;
+}
+
+input[type="submit"]{
+    color: #F4F4F4;
+    background-color: #373737;
+    max-width: 100px;
+    white-space: normal;
+    padding: 1px;
+    border-style: outset;
+}
+
+input[type="submit"]:hover:enabled {
+    border-style: inset;
+}
+
+input[type="submit"]:disabled {
+    background: gray;
+    color: darkgray;
 }
 
 /* -------------------------------------------------- Table --------------------------------------------------- */
@@ -79,11 +142,33 @@ table, tr, td, th {
     padding: 2px;
 }
 
+table {
+    margin-bottom: 30px;
+}
+
 th {
     font-weight: bold;
     text-align: center;
+    background: #373737;
+    color: #F4F4F4;
 }
 
 .icons {
     text-align: center;
+}
+
+.icons a {
+    color: blue;
+}
+
+.icons a:hover {
+    color: black;
+}
+
+.fa-check {
+    color: green;
+}
+
+.fa-times {
+    color: red;
 }

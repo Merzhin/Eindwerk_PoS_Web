@@ -17,17 +17,11 @@
             <nav>
                 <ul>
                     <li><a href="<c:url value="/controller.htm"/>"><img src="<c:url value="/images/logo.png"/>" class="logo" alt="HDR logo"></a></li>
-                    <li><a href="<c:url value="/controller.htm"/>">Product overzicht</a></li>
-                    <li><a href="<c:url value="/controller/newProduct.htm"/>">Voeg Product toe</a></li>
-                    <li><a href="<c:url value="/controller/userOverview.htm"/>">Gebruikers</a></li>
-                    <li><a href="<c:url value="/controller/newUser.htm"/>">Voeg gebruiker toe</a></li>
-                    <!--<li><a href="<c:url value="/controller/getUser.htm"/>">Profiel aanpassen</a></li>-->
-                    <li>
-                        <form action="<c:url value="/controller/logout.htm"/>" method="GET">
-                            <input type="submit" value="Log uit">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        </form>
-                    </li>
+                    <li class="hover"><a href="<c:url value="/controller.htm"/>">Producten</a></li>
+                    <li class="hover"><a href="<c:url value="/controller/newProduct.htm"/>">Product toevoegen</a></li>
+                    <li class="hover"><a href="<c:url value="/controller/userOverview.htm"/>">Gebruikers</a></li>
+                    <li class="hover"><a href="<c:url value="/controller/newUser.htm"/>">Gebruiker toevoegen</a></li>
+                    <li><a href="<c:url value="/controller/logout.htm"/>"><button class="logout"><i class="fas fa-power-off"></i></button></a></li>
                 </ul>
             </nav>
         </header>

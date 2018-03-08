@@ -21,8 +21,8 @@
                 <p><input type="password" id="password" name="password" oninput="checkPassword(this)"></p>
                 <p><label for="confirm">Bevesting uw nieuw wachtwoord</label></p>
                 <p><input type="password" id="confirm" name="confirm"  oninput="checkConfirm(this)"></p>
-                <p id="matchError", class="matchError">De wachtwoorden komen niet overeen.</p>
-                <p id="numberError" class="numberError">Een wachtwoord mag enkel cijfers bevatten</p>
+                <p id="matchError" class="matchError error">De wachtwoorden komen niet overeen.</p>
+                <p id="numberError" class="numberError error">Een wachtwoord mag enkel cijfers bevatten</p>
                 <input type="submit" id="submit" disabled value="Opslaan">
             </form>
         </main>

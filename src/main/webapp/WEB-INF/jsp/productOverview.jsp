@@ -15,7 +15,7 @@
             <jsp:include page="head.jsp"></jsp:include>
             <jsp:include page="header.jsp"></jsp:include>
                 <main>
-                    <h1>Product overzicht</h1>
+                    <h2>Product overzicht</h2>
                     <table>
                         <tr>
                             <th>Naam</th>
@@ -30,10 +30,10 @@
                             <td><fmt:formatNumber value="${item.price}" minFractionDigits="2"/></td>
                             <c:choose>
                             <c:when test="${item.isFavorite == true}">
-                                <td><i class="fas fa-check"></i></td>
+                                <td class="icons"><i class="fas fa-check"></i></td>
                             </c:when>
                             <c:otherwise>
-                                <td><i class="fas fa-times"></i></td>
+                            <td class="icons"><i class="fas fa-times"></i></td>
                             </c:otherwise>
                             </c:choose>
                             <td class="icons"><a href="<c:url value="controller/editProduct/${item.id}"/>"><i class="fas fa-pencil-alt"></i></a></td>

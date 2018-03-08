@@ -33,7 +33,7 @@
                             <p><form:label path="isFavorite">Favoriet?</form:label><form:checkbox path="isFavorite"/></p>
                             <p><form:errors class="error" path="isFavorite"/></p>
 
-                                <input type="submit" value="Voeg product toe">
+                            <input type="submit" value="Voeg product toe">
 
                         </form:form>
                     </c:when>
@@ -52,7 +52,7 @@
                             <p><form:label path="price">Prijs</form:label></p>
                             <p><form:input type="text" path="price" required=""/></p>
                             <p><form:errors class="error" path="price" /></p>
-                            
+
                             <p><form:label path="isFavorite">Favoriet?</form:label><form:checkbox path="isFavorite"/></p>
                             <p><form:errors class="error" path="isFavorite"/></p>
 

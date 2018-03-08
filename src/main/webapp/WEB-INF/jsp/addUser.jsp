@@ -29,14 +29,16 @@
 
                     <p><label for="confirm">Bevesting uw nieuw wachtwoord</label></p>
                     <p><input type="password" id="confirm"  oninput="checkConfirm(this)" required></p>
-
+                    
+                    <div class="errors">
                     <c:forEach items="${errors}" var="error">
                         <p id="loginError" class="error"><c:out value="${error}"/></p>
                     </c:forEach>
 
-                    <p id="matchError" class="matchError">De wachtwoorden komen niet overeen.</p>
-                    <p id="numberError" class="numberError">Een wachtwoord mag enkel cijfers bevatten</p>
-
+                    <p id="matchError" class="matchError error">De wachtwoorden komen niet overeen.</p>
+                    <p id="numberError" class="numberError error">Een wachtwoord mag enkel cijfers bevatten</p>
+                    </div>
+                    
                     <input type="submit" id="submit" disabled value="Toevoegen">
 
                 </form>
