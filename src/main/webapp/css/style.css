@@ -35,10 +35,8 @@ nav ul {
 nav li {
     list-style: none;
     text-align: center;
-    padding: 4px;
     margin: 0px 8%;
     border-bottom: 1px solid black;
-    display: block;
     font-weight: bolder;
 }
 
@@ -47,6 +45,8 @@ nav li {
 }
 
 nav li a {
+    padding: 8px;
+    display: block;
     color: white;
     text-decoration: none;
 }
