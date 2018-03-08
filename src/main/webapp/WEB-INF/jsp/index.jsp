@@ -14,7 +14,7 @@
             <jsp:include page="head.jsp"></jsp:include>
             <jsp:include page="header.jsp"></jsp:include>
                 <main>
-                    <h1>Index</h1>
+                    <h1>Log in</h1>
                 <c:choose>
                     <c:when test="${sessionScope.loggedIn == null}">
 
