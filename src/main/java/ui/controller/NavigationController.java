@@ -1,7 +1,8 @@
 package ui.controller;
 
-import be.livingsmart.eindwerk.domain.Item;
-import be.livingsmart.eindwerk.domain.UserBean;
+
+import be.livingsmart.hdr.Item;
+import be.livingsmart.hdr.UserBean;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
